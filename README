@@ -1,3 +1,4 @@
 J'ai init le frontend avec "npx create-react-app ." dans la console.
 J'ai init le backend avec "npm init" dans la console.
 J'ai installé les dépendances "npm i mysql express".
+J'ai installé le package "npm i nodemon".
