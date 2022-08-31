@@ -8,7 +8,7 @@ function App() {
     const [password, setPassword] = useState("");
 
     const addUsers = () => {
-        Axios.post("http://localhost:3001/signup", {
+        Axios.post(`http://localhost:4200/signup`, {
             name,
             email,
             password,

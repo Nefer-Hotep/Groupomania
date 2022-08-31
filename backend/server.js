@@ -1,13 +1,7 @@
 const express = require("express");
-const mysql = require("mysql");
+require("dotenv").config({ path: "./config/.env" });
+const db = require("./config/db");
 const app = express();
-
-const db = mysql.createConnection({
-    user: "root",
-    host: "localhost",
-    password: "root",
-    database: "groupomania",
-});
 
 // Définie les headers (en-têtes) pour les autorisations CORS.
 app.use((req, res, next) => {
@@ -47,6 +41,6 @@ app.post("/signup", (req, res) => {
     );
 });
 
-app.listen(3001, () => {
-    console.log("Server is running on port 3001");
+app.listen(process.env.PORT, () => {
+    console.log(`Server is running on port ${process.env.PORT}`);
 });
