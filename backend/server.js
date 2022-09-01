@@ -1,7 +1,13 @@
 const express = require("express");
 require("dotenv").config({ path: "./config/.env" });
-const db = require("./config/db");
+const Sequelize = require("./config/db");
+const userRoutes = require("./routes/user.routes");
 const app = express();
+
+// Connection à MySql avec sequelize.
+Sequelize.sync()
+    .then(console.log("Connection has been established successfully."))
+    .catch((error) => console.log(error));
 
 // Définie les headers (en-têtes) pour les autorisations CORS.
 app.use((req, res, next) => {
@@ -23,23 +29,7 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-app.post("/signup", (req, res) => {
-    const name = req.body.name;
-    const email = req.body.email;
-    const password = req.body.password;
-
-    db.query(
-        "INSERT INTO users (name, email, password) VALUES (?,?,?)",
-        [name, email, password],
-        (err, result) => {
-            if (err) {
-                console.log(err);
-            } else {
-                res.send("Values Inserted");
-            }
-        }
-    );
-});
+app.use(userRoutes);
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`);
