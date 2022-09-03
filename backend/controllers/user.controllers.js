@@ -17,9 +17,15 @@ exports.signup = (req, res) => {
     //         }
     //     }
     // );
-    const body = req;
-    const error = userValidation(body);
-    if (error) return res.status(401).json(error.details[0].message);
-    // User.create({ ...req.body });
+
+    // console.log(req.body);
+    const error = userValidation(req);
+    if (error) return res.status(401).json(error);
+    User.create({ ...req.body }).then((result) => {
+        res.status(201).json(result)
+    }).catch((err) => {
+        res.status(500).json(err)
+    });;
+
 };
 exports.login = (req, res) => {};

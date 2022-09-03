@@ -21,7 +21,7 @@ app.use((req, res, next) => {
     // Autorise certaines methode CRUD.
     res.setHeader(
         "Access-Control-Allow-Methods",
-        "GET, POST, PUT, DELETE, PATCH, OPTIONS"
+        "GET, POST, PUT, DELETE, PATCH, OPTIONS" 
     );
     // next() renvoie la réponse.
     next();
