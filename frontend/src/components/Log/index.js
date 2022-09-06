@@ -1,0 +1,38 @@
+import React from "react";
+import { useState } from "react";
+import SignUpForm from "./SignUpForm";
+import LoginForm from "./LoginForm";
+
+const Log = (props) => {
+    const [signUpModal, setSignUpModal] = useState(props.signup);
+    const [loginModal, setLoginModal] = useState(props.login);
+
+    const handleModals = (e) => {
+        if (e.target.id === "register") {
+            setLoginModal(false);
+            setSignUpModal(true);
+        } else if (e.target.id === "login") {
+            setLoginModal(true);
+            setSignUpModal(false);
+        }
+    };
+
+    return (
+        <div className="connection-form">
+            <div className="form-container">
+                <ul>
+                    <li onClick={handleModals} id="register">
+                        S'inscrire
+                    </li>
+                    <li onClick={handleModals} id="login">
+                        Se connecter
+                    </li>
+                </ul>
+                {signUpModal && <SignUpForm />}
+                {loginModal && <LoginForm />}
+            </div>
+        </div>
+    );
+};
+
+export default Log;

@@ -29,7 +29,7 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-app.use(userRoutes);
+app.use('/api/user', userRoutes);
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`);

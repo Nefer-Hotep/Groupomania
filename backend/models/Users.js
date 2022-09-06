@@ -8,7 +8,7 @@ const User = db.define("users", {
         autoIncrement: true,
         allowNull: false,
     },
-    name: {
+    pseudo: {
         type: DataTypes.STRING,
         allowNull: false,
     },
