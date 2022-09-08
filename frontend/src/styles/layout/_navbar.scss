@@ -1,12 +1,19 @@
-.nav-container  {
-    height: 150px;
-}
+nav {
+    width: 100%;
+    padding-left: 30px;
+    display: flex;
+    align-items: center;
 
-.logo {
-    @include center;
-    img {
-        height: 150px;
-        width: 150px;
-        cursor: pointer;
+    .nav-container {
+        height: 100%;
+        width: 200px;
+    }
+    .logo {
+        img {
+            height: 175px;
+            width: 100%;
+            object-fit: fill;
+            cursor: pointer;
+        }
     }
 }

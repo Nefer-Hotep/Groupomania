@@ -7,7 +7,10 @@ const Navbar = () => {
             <div className="nav-container">
                 <div className="logo">
                     <Link to="/">
-                    <img src="./img/icon-left-font-monochrome-black.png" alt="" />
+                        <img
+                            src="./img/icon-left-font-monochrome-black.png"
+                            alt=""
+                        />
                     </Link>
                 </div>
             </div>

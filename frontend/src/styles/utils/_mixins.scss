@@ -1,3 +1,13 @@
+// 
+//  COLOR
+// 
+$color-primary : #FD2D01;
+$color-secondary : #FFD7D7;
+$color-tertiary : #4E5166;
+
+// 
+//  DISPLAY
+// 
 @mixin center {
     display: flex;
     justify-content: center;
