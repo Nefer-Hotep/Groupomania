@@ -15,14 +15,28 @@ $font-1: "font-1", sans-serif;
 $font-2: "font-2", serif;
 $font-3: "font-3", serif;
 
+//
+//  COLOR
+//
+$color-1: #fd2d01;
+$color-2: #ffd7d7;
+$color-3: #4e5166;
+$color-4: #A5C4D4;
+$color-5: #FF8675;
+$white: white;
+$shadow-color: #4e516692;
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     list-style-type: none;
-    // outline: none;
-    // border: none;
+    outline: none;
+    border: none;
     text-decoration: none;
     font-family: $font-2;
-    outline: 1px solid red;
+    // outline: 1px solid red;
+    &::selection {
+        background: $color-1;
+    }
 }

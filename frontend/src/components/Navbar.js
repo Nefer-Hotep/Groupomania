@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
     return (
         <nav>
-            <div className="nav-container">
-                <div className="logo">
-                    <Link to="/">
+            <div className='nav-container'>
+                <div className='logo'>
+                    <Link to='/'>
                         <img
-                            src="./img/icon-left-font-monochrome-black.png"
-                            alt=""
+                            src='./img/icon-left-font-monochrome-white.svg'
+                            alt=''
                         />
                     </Link>
                 </div>
