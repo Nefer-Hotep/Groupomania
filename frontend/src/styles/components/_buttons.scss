@@ -20,16 +20,14 @@ input[type="submit"] {
 
 input,
 textarea {
-  resize: none;
-  border-radius: 20px;
-  width: 270px;
-  height: 35px;
-  background: $white;
-}
-textarea {
-  &:focus {
-    box-shadow: 0 0 4px rgba(0, 22, 44, 0.1);
-  }
+    resize: none;
+    border-radius: 20px;
+    width: 270px;
+    height: 35px;
+    background: $white;
+    padding: 14px 20px;
+    margin: 0;
+    font-size: 1rem;
 }
 
 #login,

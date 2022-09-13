@@ -32,11 +32,19 @@ exports.updateOneUser = (req, res) => {
                 return res
                     .status(400)
                     .json({ message: "ID unkown : " + req.params });
-            user.pseudo = body.pseudo
-            user.save().then(
-                res.status(201).json({msg: "User updated !"})
-            ).catch((err) => res.status(500).json({ err }));
+            user.pseudo = body.pseudo;
+            user.save()
+                .then(res.status(201).json({ msg: "User updated !" }))
+                .catch((err) => res.status(500).json({ err }));
         })
         .catch((err) => res.status(500).json({ err }));
 };
-exports.deleteOneUser = (req, res) => {};
+exports.deleteOneUser = (req, res) => {
+    const { id } = req.params;
+    UserModel.destroy({ where: { id: id } })
+        .then((user) => {
+            if (user === 0) return res.status(404).json({ msg: "Not Found" });
+            res.status(200).json({msg : "User deleted !"})
+        })
+        .catch((err) => res.status(500).json({ err }));
+}; 
