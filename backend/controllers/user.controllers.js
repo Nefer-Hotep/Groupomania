@@ -1,7 +1,7 @@
 const UserModel = require("../models/Users");
 
-exports.getAllUsers = async (req, res) => {
-    const users = UserModel.findAll({
+exports.getAllUsers = (req, res) => {
+    UserModel.findAll({
         attributes: { exclude: ["password", "createdAt", "updatedAt"] },
     })
         .then((users) => res.status(200).json(users))
@@ -44,7 +44,7 @@ exports.deleteOneUser = (req, res) => {
     UserModel.destroy({ where: { id: id } })
         .then((user) => {
             if (user === 0) return res.status(404).json({ msg: "Not Found" });
-            res.status(200).json({msg : "User deleted !"})
+            res.status(200).json({ msg: "User deleted !" });
         })
         .catch((err) => res.status(500).json({ err }));
-}; 
+};

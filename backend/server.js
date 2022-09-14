@@ -2,6 +2,7 @@ const express = require("express");
 require("dotenv").config({ path: "./config/.env" });
 const Sequelize = require("./config/db");
 const userRoutes = require("./routes/user.routes");
+const postRoutes = require("./routes/post.routes");
 const app = express();
 
 // Connection à MySql avec sequelize.
@@ -21,7 +22,7 @@ app.use((req, res, next) => {
     // Autorise certaines methode CRUD.
     res.setHeader(
         "Access-Control-Allow-Methods",
-        "GET, POST, PUT, DELETE, PATCH, OPTIONS" 
+        "GET, POST, PUT, DELETE, PATCH, OPTIONS"
     );
     // next() renvoie la réponse.
     next();
@@ -29,7 +30,8 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-app.use('/api/user', userRoutes);
+app.use("/api/user", userRoutes);
+app.use('/api/post', postRoutes)
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`);

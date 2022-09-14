@@ -1,8 +1,6 @@
 const User = require("../models/Users");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { signUpErrors, signInErrors } = require("../utils/errors.utils");
-
 const userValidation = require("../validation/validation");
 
 exports.signup = (req, res) => {
