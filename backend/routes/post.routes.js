@@ -12,9 +12,9 @@ router.get("/", postCtrl.getAllPosts);
 // Read (One)
 // router.get("/:id", postCtrl.getOne);
 // Update
-// router.put("/:id", postCtrl.updateOne);
+router.put("/:id", postCtrl.updatePost);
 // Delete
-// router.delete("/:id", postCtrl.deleteOne);
+router.delete("/:id", postCtrl.deletePost);
 
 // Exporte le router pour être accessible par les autres fichiers
 module.exports = router;

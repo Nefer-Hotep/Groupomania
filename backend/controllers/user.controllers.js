@@ -39,6 +39,7 @@ exports.updateOneUser = (req, res) => {
         })
         .catch((err) => res.status(500).json({ err }));
 };
+
 exports.deleteOneUser = (req, res) => {
     const { id } = req.params;
     UserModel.destroy({ where: { id: id } })
