@@ -3,6 +3,7 @@
     padding: 10%;
 
     .connection-form {
+        @include shadow;
         z-index: 1;
         height: 100%;
         min-width: 490px;
@@ -10,9 +11,8 @@
         padding: 30px 0;
         user-select: none;
         text-align: center;
-        border: 2px solid $color-2;
+        border: 1px solid $color-1;
         border-radius: 25px;
-        box-shadow: 9px 8px 20px 0px $shadow-color;
         background-color: $color-2;
         color: $color-3;
 

@@ -1,0 +1,8 @@
+.card-container {
+    @include shadow;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    color: $color-3;
+    border: 1px solid $color-2;
+}

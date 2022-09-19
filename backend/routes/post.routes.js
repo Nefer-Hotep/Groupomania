@@ -2,19 +2,21 @@
 const express = require("express");
 // Appel le controller pour associer les fonctions aux différentes routes.
 const postCtrl = require("../controllers/post.controllers");
+// Import du middleware de gestion d'autorisation.
+const auth = require("../middleware/auth");
 // Crée un router en utilisant la méthode .Router() d'express.
 const router = express.Router();
 
 // Create
-router.post("/", postCtrl.createPost);
+router.post("/", auth, postCtrl.createPost);
 // Read (all)
 router.get("/", postCtrl.getAllPosts);
 // Read (One)
 // router.get("/:id", postCtrl.getOne);
 // Update
-router.put("/:id", postCtrl.updatePost);
+router.put("/:id", auth, postCtrl.updatePost);
 // Delete
-router.delete("/:id", postCtrl.deletePost);
+router.delete("/:id", auth, postCtrl.deletePost);
 
 // Exporte le router pour être accessible par les autres fichiers
 module.exports = router;
