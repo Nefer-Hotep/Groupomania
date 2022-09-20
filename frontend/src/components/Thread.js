@@ -1,11 +1,12 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import React from 'react';
+import React from "react";
 
-const Thread= () => {
+const Thread = () => {
     const token = localStorage.getItem("groupomania.jwt.token");
 
     const [postList, setPostList] = useState([]);
+
     useEffect(() => {
         axios
             .get("http://localhost:4200/api/post/", {
@@ -21,18 +22,20 @@ const Thread= () => {
     }, []);
 
     return (
-        <div className="thread">
+        <ul className='thread'>
             {postList.map((post) => {
                 return (
-                    <ul key={post.postId} className="card-container">
-                        <li  className="postCard">
-                            <h2>{post.postId}</h2>
-                            <p>{post.message}</p>
-                        </li>
-                    </ul>
+                    <li key={post.id} className='card-container'>
+                        <h2>{post.id}</h2>
+                        <img
+                            src={`http://localhost:4200/${post.image}`}
+                            alt={`Post de ${post.id}`}
+                        />
+                        <p>{post.message}</p>
+                    </li>
                 );
             })}
-        </div>
+        </ul>
     );
 };
 

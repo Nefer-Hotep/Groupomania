@@ -5,4 +5,13 @@
     border-radius: 10px;
     color: $color-3;
     border: 1px solid $color-2;
+    object-fit: contain;
+    & img {
+        border-radius: 10px;
+        object-fit: cover;
+        width: 100%;
+    }
+    & p {
+        padding: 15px 0px;
+    }
 }

@@ -5,8 +5,10 @@ const CreatePost = () => {
     const token = localStorage.getItem("groupomania.jwt.token");
 
     const [message, setMessage] = useState("");
+    const [postImage, setPostImage] = useState(null);
+    const [file, setFile] = useState();
 
-    const addPost = async (e) => {
+    const createPost = async (e) => {
         e.preventDefault();
 
         await axios({
@@ -36,9 +38,9 @@ const CreatePost = () => {
                 value={message}
             ></textarea>
             <div>
-            <button className='send' onClick={addPost}>
-                Envoyer
-            </button>
+                <button className='send' onClick={createPost}>
+                    Envoyer
+                </button>
             </div>
         </div>
     );

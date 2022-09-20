@@ -8,7 +8,7 @@ const auth = require("../middleware/auth");
 const router = express.Router();
 
 // Create
-router.post("/", auth, postCtrl.createPost);
+router.post("/", auth, postCtrl.upload, postCtrl.createPost);
 // Read (all)
 router.get("/", postCtrl.getAllPosts);
 // Read (One)

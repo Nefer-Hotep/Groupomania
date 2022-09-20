@@ -30,8 +30,12 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
+// routers
 app.use("/api/user", userRoutes);
 app.use('/api/post', postRoutes)
+
+// static Images Folder
+app.use('/Images', express.static('./Images'))
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`);
