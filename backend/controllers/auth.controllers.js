@@ -1,7 +1,9 @@
-const User = require("../models/Users");
+const db = require("../models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const userValidation = require("../validation/validation");
+
+const User = db.users
 
 exports.signup = (req, res) => {
     bcrypt

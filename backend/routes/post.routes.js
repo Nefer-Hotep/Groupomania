@@ -11,8 +11,8 @@ const router = express.Router();
 router.post("/", auth, postCtrl.upload, postCtrl.createPost);
 // Read (all)
 router.get("/", postCtrl.getAllPosts);
-// Read (One)
-// router.get("/:id", postCtrl.getOne);
+// Read (User Post)
+router.get('/getUserPost', postCtrl.getUsersPosts)
 // Update
 router.put("/:id", auth, postCtrl.updatePost);
 // Delete

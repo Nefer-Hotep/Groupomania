@@ -5,11 +5,22 @@ const CreatePost = () => {
     const token = localStorage.getItem("groupomania.jwt.token");
 
     const [message, setMessage] = useState("");
-    const [postImage, setPostImage] = useState(null);
-    const [file, setFile] = useState();
+    const [image, setImage] = useState("");
+
+    // const handlePicture = (e) => {
+    //     setPostImage(URL.createObjectURL(e.target.files[0]));
+    //     setFile(e.target.files[0]);
+    // };
 
     const createPost = async (e) => {
         e.preventDefault();
+
+        const formData = new FormData();
+
+        // userId n'est pa récupéré
+        formData.append("userId", );
+        formData.append("image", image);
+        formData.append("message", message);
 
         await axios({
             method: "post",
@@ -17,9 +28,7 @@ const CreatePost = () => {
             headers: {
                 Authorization: `bearer ${token}`,
             },
-            data: {
-                message,
-            },
+            formData,
         })
             .then((res) => {
                 console.log(res.data);
@@ -30,18 +39,30 @@ const CreatePost = () => {
     return (
         <div className='create-post'>
             <h1>Acceuil</h1>
-            <textarea
-                name='message'
-                id='message'
-                placeholder='Quoi de neuf ?'
-                onChange={(e) => setMessage(e.target.value)}
-                value={message}
-            ></textarea>
-            <div>
-                <button className='send' onClick={createPost}>
-                    Envoyer
-                </button>
-            </div>
+            <form>
+                <img src={image} alt='' />
+                <input
+                    type='text'
+                    name='message'
+                    id='message'
+                    placeholder='Quoi de neuf ?'
+                    onChange={(e) => setMessage(e.target.value)}
+                    value={message}
+                />
+                <input
+                    type='file'
+                    id='file-upload'
+                    name='file'
+                    accept='.jpg, .jpeg, .png'
+                    onChange={(e) => setImage(e.target.files[0])}
+                />
+                <input
+                    type='submit'
+                    value='Envoyer'
+                    className='send'
+                    onClick={createPost}
+                />
+            </form>
         </div>
     );
 };

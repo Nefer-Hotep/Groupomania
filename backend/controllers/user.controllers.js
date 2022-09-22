@@ -1,7 +1,11 @@
-const UserModel = require("../models/Users");
+const db = require("../models");
+
+// Create main Model
+const User = db.users
+const Post = db.posts
 
 exports.getAllUsers = (req, res) => {
-    UserModel.findAll({
+    User.findAll({
         attributes: { exclude: ["password", "createdAt", "updatedAt"] },
     })
         .then((users) => res.status(200).json(users))
@@ -10,7 +14,7 @@ exports.getAllUsers = (req, res) => {
 
 exports.getOneUser = (req, res) => {
     const { id } = req.params;
-    UserModel.findByPk(id, {
+    User.findByPk(id, {
         attributes: { exclude: ["password", "createdAt", "updatedAt"] },
     })
         .then((users) => {
@@ -26,7 +30,7 @@ exports.getOneUser = (req, res) => {
 exports.updateOneUser = (req, res) => {
     const { id } = req.params;
     const { body } = req;
-    UserModel.findByPk(id)
+    User.findByPk(id)
         .then((user) => {
             if (!user)
                 return res
@@ -42,7 +46,7 @@ exports.updateOneUser = (req, res) => {
 
 exports.deleteOneUser = (req, res) => {
     const { id } = req.params;
-    UserModel.destroy({ where: { id: id } })
+    User.destroy({ where: { id: id } })
         .then((user) => {
             if (user === 0) return res.status(404).json({ msg: "Not Found" });
             res.status(200).json({ msg: "User deleted !" });
