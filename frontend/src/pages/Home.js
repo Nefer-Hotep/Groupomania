@@ -1,11 +1,11 @@
 import React from "react";
 import Thread from "../components/Thread";
-import CreatePost from "../components/Post/CreatePost";
+import PostForm from "../components/Post/PostForm";
 
 const Home = () => {
     return (
         <main className='home'>
-            <CreatePost />
+            <PostForm />
             <Thread />
         </main>
     );

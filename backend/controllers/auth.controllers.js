@@ -55,7 +55,7 @@ exports.login = (req, res) => {
                                     { expiresIn: "24h" }
                                 ),
                             });
-                        }
+                        } 
                     })
                     // Si erreur d'exécution de la requête au serveur code 500.
                     .catch((error) => {

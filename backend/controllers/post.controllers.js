@@ -10,33 +10,27 @@ const Post = db.posts;
 exports.getAllPosts = async (req, res) => {
     await Post.findAll({
         order: [["createdAt", "DESC"]],
-    })
+    })  
         .then((post) => res.status(200).json(post))
         .catch((err) => res.status(500).json({ err }));
 };
 
 exports.createPost = async (req, res) => {
-    // const post = await new Post({
-    //     id: req.body.id,
-    //     userId: req.body.userId,
-    //     image: req.file.path,
-    //     message: req.body.message,
-    // });
 
-    // post.save()
-    //     .then(() => res.status(201).json(post))
-    //     .catch((err) => res.status(400).json({ err }));
+   let image
 
-    const userId = token.getUserId(req);
+   if (req.file) {
+    image = req.file.path
+   } else {
+    image = null
+   }
 
-    console.log(userId);
-    let data = {
-        image: req.file.path,
+    const post = await Post.create({
+        image: image,
         message: req.body.message,
-    };
-
-    const post = await Post.create(data);
-    res.status(201).send(post);
+    });
+    res.status(201).json({ message : "Post ajouté"});
+    console.log(post.dataValues);
 };
 
 exports.updatePost = (req, res) => {
@@ -66,6 +60,7 @@ exports.deletePost = (req, res) => {
         .catch((err) => res.status(500).json({ err }));
 };
 
+// Récupère le post de la table users
 exports.getUsersPosts = async (req, res) => {
     const data = await User.findAll({
         include: [
