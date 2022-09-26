@@ -25,19 +25,19 @@ db.posts = require("./Posts")(sequelize, DataTypes);
 // Connection à MySql avec sequelize.
 db.sequelize
     .sync({ force: false })
-    .then(console.log("Connection has been established successfully."))
+    .then(console.log("Table and model synced succesfully !."))
     .catch((error) => console.log(error));
 
 // 1 à plusieurs relations
 
 db.users.hasMany(db.posts, {
-    foreignKey: 'userId',
-    as: 'posts'
-})
+    foreignKey: "userId",
+    as: "posts",
+});
 
 db.posts.belongsTo(db.users, {
     foreignKey: "userId",
-    as: 'users'
-})
+    as: "users",
+});
 
 module.exports = db;

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import React from "react";
+import Card from "./Post/Card";
 
 const Thread = () => {
     const token = localStorage.getItem("groupomania.jwt.token");
@@ -9,7 +10,7 @@ const Thread = () => {
 
     useEffect(() => {
         axios
-            .get("http://localhost:4200/api/post/", {
+            .get(`${process.env.REACT_APP_API_URL}api/post/`, {
                 headers: {
                     Authorization: `bearer ${token}`,
                 },
@@ -18,22 +19,15 @@ const Thread = () => {
                 console.log(res.data);
                 setPostList(res.data);
             })
-            .catch();
+            .catch((err) => {
+                console.log(err);
+            });
     }, []);
 
     return (
         <ul className='thread'>
             {postList.map((post) => {
-                return (
-                    <li key={post.id} className='card-container'>
-                        <h2>{post.id}</h2>
-                        <img
-                            src={`http://localhost:4200/${post.image}`}
-                            alt={`Post de ${post.id}`}
-                        />
-                        <p>{post.message}</p>
-                    </li>
-                );
+                return <Card post={post} key={post.id} />;
             })}
         </ul>
     );

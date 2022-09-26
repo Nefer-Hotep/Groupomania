@@ -14,4 +14,10 @@
     & p {
         padding: 15px 0px;
     }
+    .update-post {
+        textarea {
+            border: 1px solid $color-2;
+            width: 100%;
+        }
+    }
 }

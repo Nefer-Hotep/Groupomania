@@ -14,16 +14,16 @@ const CreatePost = () => {
     };
 
     const formData = new FormData();
-    formData.append("image", imageFile)
+    formData.append("image", imageFile);
     formData.append("message", message);
 
-    const submitPost = async (e) => {
+    const submitPost = (e) => {
         e.preventDefault();
 
-        await axios({
+        axios({
             method: "post",
             url: `${process.env.REACT_APP_API_URL}api/post`,
-            data : formData,
+            data: formData,
             headers: {
                 Authorization: `bearer ${token}`,
             },

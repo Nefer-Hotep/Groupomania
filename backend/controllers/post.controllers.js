@@ -1,4 +1,3 @@
-const token = require("../middleware/token")
 const multer = require("multer");
 const path = require("path");
 const db = require("../models");
@@ -10,26 +9,26 @@ const Post = db.posts;
 exports.getAllPosts = async (req, res) => {
     await Post.findAll({
         order: [["createdAt", "DESC"]],
-    })  
+    })
         .then((post) => res.status(200).json(post))
         .catch((err) => res.status(500).json({ err }));
 };
 
 exports.createPost = async (req, res) => {
+    let image;
 
-   let image
-
-   if (req.file) {
-    image = req.file.path
-   } else {
-    image = null
-   }
+    if (req.file) {
+        image = req.file.path;
+    } else {
+        image = null;
+    }
 
     const post = await Post.create({
+        userId: req.auth.userId,
         image: image,
         message: req.body.message,
     });
-    res.status(201).json({ message : "Post ajouté"});
+    res.status(201).json({ message: "Post ajouté" });
     console.log(post.dataValues);
 };
 
@@ -71,7 +70,7 @@ exports.getUsersPosts = async (req, res) => {
         ],
         where: { id: 30 },
     });
-    res.status(200).send(data)
+    res.status(200).send(data);
 };
 
 // Upload Image Controller
