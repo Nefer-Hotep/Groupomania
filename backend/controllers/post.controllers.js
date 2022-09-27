@@ -9,6 +9,13 @@ const Post = db.posts;
 exports.getAllPosts = async (req, res) => {
     await Post.findAll({
         order: [["createdAt", "DESC"]],
+        include: [
+            {
+                model: User,
+                as: "users",
+                attributes: ["pseudo", "id"],
+            },
+        ],
     })
         .then((post) => res.status(200).json(post))
         .catch((err) => res.status(500).json({ err }));
@@ -32,26 +39,39 @@ exports.createPost = async (req, res) => {
     console.log(post.dataValues);
 };
 
-exports.updatePost = (req, res) => {
-    const { id } = req.params;
-    const { body } = req;
-    Post.findByPk(id)
-        .then((post) => {
-            if (!post)
-                return res
-                    .status(400)
-                    .json({ message: "ID unkown : " + req.params });
-            post.message = body.message;
-            post.save()
-                .then(res.status(201).json({ msg: "Post updated !" }))
-                .catch((err) => res.status(500).json({ err }));
-        })
-        .catch((err) => res.status(500).json({ err }));
+exports.updatePost = async (req, res) => {
+    const  id  = req.params.id;
+    const userId = req.auth.userId;
+    // let newImageUrl
+
+    // // console.log(userId);
+    // let post = await Post.findByPk(id);
+
+    // if (userId === post.userId) {
+    //     if (req.file) {
+    //         newImageUrl = req.file.path
+    //         if (post.image) {
+
+    //         }
+    //     }
+    //     if (req.body.message) {
+    //         post.message = req.body.message;
+    //     }
+    //     console.log(post.message);
+    //     post.update({
+    //         message: post.message
+    //     });
+    //     res.status(200).json({ message: "Post modifié" });
+    // } else {
+    //     res.status(400).json({ message: "Vous n'avez pas les droits requis" });
+    // }
+    const post = await Post.update(req.body, { where: { id: id }})
+    res.status(200).send(post)
 };
 
 exports.deletePost = (req, res) => {
     const { id } = req.params;
-    PostModel.destroy({ where: { id: id } })
+    Post.destroy({ where: { id: id } })
         .then((user) => {
             if (user === 0) return res.status(404).json({ msg: "Not Found" });
             res.status(200).json({ msg: "Post deleted !" });
@@ -68,7 +88,7 @@ exports.getUsersPosts = async (req, res) => {
                 as: "posts",
             },
         ],
-        where: { id: 30 },
+        where: { id: 39 },
     });
     res.status(200).send(data);
 };

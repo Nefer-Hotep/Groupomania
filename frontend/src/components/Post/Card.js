@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 
 const Card = ({ post }) => {
     const token = localStorage.getItem("groupomania.jwt.token");
 
+    const [userPost, setUserPost] = useState()
     const [isUpdated, setIsUpdated] = useState(true);
     const [textUpdate, setTextUpdate] = useState(null);
 
     const updateItem = () => {
         // console.log("Modifie le post !");
-
         axios
-                .put(`${process.env.REACT_APP_API_URL}api/post/${post.userId}`, {
+                .put(`${process.env.REACT_APP_API_URL}api/post/${post.id}`, {
                     headers: {
                         Authorization: `bearer ${token}`,
                     },
