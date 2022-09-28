@@ -33,11 +33,15 @@ db.sequelize
 db.users.hasMany(db.posts, {
     foreignKey: "userId",
     as: "posts",
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
 });
 
 db.posts.belongsTo(db.users, {
     foreignKey: "userId",
     as: "users",
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
 });
 
 module.exports = db;

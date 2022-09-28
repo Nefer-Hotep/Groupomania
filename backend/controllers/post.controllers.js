@@ -1,6 +1,7 @@
 const multer = require("multer");
 const path = require("path");
 const db = require("../models");
+const fs = require("fs");
 
 // Create main Model
 const User = db.users;
@@ -40,13 +41,52 @@ exports.createPost = async (req, res) => {
 };
 
 exports.updatePost = async (req, res) => {
-    const  id  = req.params.id;
+    const id = req.params.id;
     const userId = req.auth.userId;
-    // let newImageUrl
+    // Si un fichier est présent ou pas le format de la requête ne sera pas le même.
+    // Ici on vérifie si un fichier est présent ou non.
+    const imageObject = req.file
+        ? // S'il y a un champ file, on doit récupérer l'objet et parse la chaine de caractère.
+          {
+              ...JSON.parse(req.body.post),
+              image: req.file.path,
+          }
+        : // S'il n'y a pas d'objet transmis on le récupère dans le body de la requête.
+          {
+              ...req.body,
+          };
+    // On supprime l'_userId de la requête pour éviter les modifications d'objets par d'autres utilisateurs.
+    delete imageObject.userId;
+    // On cherche l'objet dans la bdd et vérifie la provenance de la requête.
+    Post.findByPk({ id: id })
+    .then((post) => {
+            console.log(post);
+            // Si la requête provient d'un utilisateur non autorisé un message est transmis.
+            if (post.userId != userId) {
+                res.status(403).json({ message: "403: unauthorized request." });
+            }
+            // Si la requête est valide on met à jour la modification.
+            else {
+                Post.updateOne(
+                    // Indique ou effectuer la modification et avec quel objet.
+                    { id: id },
+                    { ...imageObject, id: id }
+                )
+                    .then(() =>
+                        res.status(200).json({ message: "Post modified !" })
+                    )
+                    .catch((error) => {
+                        res.status(401).json({ error });
+                    });
+            }
+        })
+        .catch((error) => {
+            res.status(400).json({ error });
+        });
 
-    // // console.log(userId);
     // let post = await Post.findByPk(id);
 
+    // console.log(req);
     // if (userId === post.userId) {
     //     if (req.file) {
     //         newImageUrl = req.file.path
@@ -57,7 +97,6 @@ exports.updatePost = async (req, res) => {
     //     if (req.body.message) {
     //         post.message = req.body.message;
     //     }
-    //     console.log(post.message);
     //     post.update({
     //         message: post.message
     //     });
@@ -65,8 +104,6 @@ exports.updatePost = async (req, res) => {
     // } else {
     //     res.status(400).json({ message: "Vous n'avez pas les droits requis" });
     // }
-    const post = await Post.update(req.body, { where: { id: id }})
-    res.status(200).send(post)
 };
 
 exports.deletePost = (req, res) => {
