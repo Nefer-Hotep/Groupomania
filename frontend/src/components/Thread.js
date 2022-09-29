@@ -7,14 +7,15 @@ const Thread = () => {
     const token = localStorage.getItem("groupomania.jwt.token");
 
     const [postList, setPostList] = useState([]);
-
+    
     useEffect(() => {
-        axios
-            .get(`${process.env.REACT_APP_API_URL}api/post/`, {
-                headers: {
-                    Authorization: `bearer ${token}`,
-                },
-            })
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_API_URL}api/post/`,
+            headers: {
+                Authorization: `bearer ${token}`,
+            },
+        })
             .then((res) => {
                 console.log(res.data);
                 setPostList(res.data);
@@ -27,7 +28,12 @@ const Thread = () => {
     return (
         <ul className='thread'>
             {postList.map((post) => {
-                return <Card post={post} key={post.id} />;
+                return (
+                    <Card
+                        post={post}
+                        key={post.id}
+                    />
+                );
             })}
         </ul>
     );
