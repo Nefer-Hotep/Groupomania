@@ -3,11 +3,14 @@ import { useState, useEffect } from "react";
 import React from "react";
 import Card from "./Post/Card";
 
-const Thread = () => {
+const Thread = ({ createPost }) => {
     const token = localStorage.getItem("groupomania.jwt.token");
 
     const [postList, setPostList] = useState([]);
-    
+    const [postUpdate, setPostUpdate] = useState()
+
+    console.log(postUpdate);
+
     useEffect(() => {
         axios({
             method: "get",
@@ -17,23 +20,18 @@ const Thread = () => {
             },
         })
             .then((res) => {
-                console.log(res.data);
+                // console.log(res.data);
                 setPostList(res.data);
             })
             .catch((err) => {
                 console.log(err);
             });
-    }, []);
+    }, [createPost, postUpdate]);
 
     return (
         <ul className='thread'>
             {postList.map((post) => {
-                return (
-                    <Card
-                        post={post}
-                        key={post.id}
-                    />
-                );
+                return <Card post={post} setPostUpdate={setPostUpdate} key={post.id} />;
             })}
         </ul>
     );

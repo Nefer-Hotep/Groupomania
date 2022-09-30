@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const CreatePost = () => {
+const CreatePost = ({ setCreatePost }) => {
     const token = localStorage.getItem("groupomania.jwt.token");
 
     const [message, setMessage] = useState("");
@@ -30,6 +30,10 @@ const CreatePost = () => {
         })
             .then((res) => {
                 console.log(res.data);
+                setCreatePost(res.data);
+                setMessage("");
+                setImageFile();
+                setImageUrl();
             })
             .catch((err) => console.log(err));
     };
