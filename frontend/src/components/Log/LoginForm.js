@@ -26,7 +26,10 @@ const LoginForm = () => {
                     emailError.innerHTML = res.data.errors.email;
                     passwordError.innerHTML = res.data.errors.password;
                 } else {
-                    localStorage.setItem("groupomania.jwt.token", res.data.token);
+                    localStorage.setItem(
+                        "groupomania.jwt.token",
+                        res.data.token
+                    );
                     window.location = "/home";
                 }
             })

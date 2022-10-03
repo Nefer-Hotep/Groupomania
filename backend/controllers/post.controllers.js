@@ -43,17 +43,15 @@ exports.updatePost = async (req, res) => {
     const userId = req.auth.userId;
     let newImageUrl;
 
+    const checkAdmin = await User.findByPk(userId);
     let post = await Post.findByPk(id);
 
-    console.log(req.body);
-    if (userId === post.userId) {
+    if (userId === post.userId || checkAdmin.admin === true) {
         if (req.file) {
             newImageUrl = req.file.path;
             if (post.image) {
                 // Récupère le nom de fichier des images.
-                console.log(post.image);
                 const filename = post.image.split("images")[1];
-                console.log(filename);
                 fs.unlink(`images/${filename}`, (err) => {
                     if (err) console.log(err);
                     else {
@@ -78,14 +76,35 @@ exports.updatePost = async (req, res) => {
     }
 };
 
-exports.deletePost = (req, res) => {
+exports.deletePost = async (req, res) => {
     const { id } = req.params;
-    Post.destroy({ where: { id: id } })
-        .then((user) => {
-            if (user === 0) return res.status(404).json({ msg: "Not Found" });
-            res.status(200).json({ msg: "Post deleted !" });
-        })
-        .catch((err) => res.status(500).json({ err }));
+    const userId = req.auth.userId;
+
+    const post = await Post.findByPk(id);
+    const checkAdmin = await User.findByPk(userId);
+
+    if (userId === post.userId || checkAdmin.admin === true) {
+        if (post.image) {
+            const filename = post.image.split("images")[1];
+            fs.unlink(`images/${filename}`, () => {
+                Post.destroy({ where: { id: id } })
+                    .then(() => {
+                        res.status(200).json({ msg: "Post supprimé !" });
+                    })
+                    .catch((err) => res.status(500).json({ err }));
+            });
+        } else {
+            Post.destroy({ where: { id: id } })
+                .then(() => {
+                    res.status(200).json({ msg: "Post supprimé !" });
+                })
+                .catch((err) => res.status(500).json({ err }));
+        }
+    } else {
+        res.status(401).json({
+            message: "Vous n'avez pas les droits requis !",
+        });
+    }
 };
 
 // Récupère le post de la table users

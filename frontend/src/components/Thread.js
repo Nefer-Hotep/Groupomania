@@ -9,8 +9,6 @@ const Thread = ({ createPost }) => {
     const [postList, setPostList] = useState([]);
     const [postUpdate, setPostUpdate] = useState()
 
-    console.log(postUpdate);
-
     useEffect(() => {
         axios({
             method: "get",
@@ -20,7 +18,6 @@ const Thread = ({ createPost }) => {
             },
         })
             .then((res) => {
-                // console.log(res.data);
                 setPostList(res.data);
             })
             .catch((err) => {

@@ -21,10 +21,18 @@ const Log = (props) => {
         <div className='connection-form'>
             <div className='form-container'>
                 <ul>
-                    <li onClick={handleModals} id='register' className={signUpModal ? "active-btn" : null}>
+                    <li
+                        onClick={handleModals}
+                        id='register'
+                        className={signUpModal ? "active-btn" : null}
+                    >
                         S'inscrire
                     </li>
-                    <li onClick={handleModals} id='login' className={loginModal ? "active-btn" : null}>
+                    <li
+                        onClick={handleModals}
+                        id='login'
+                        className={loginModal ? "active-btn" : null}
+                    >
                         Se connecter
                     </li>
                 </ul>

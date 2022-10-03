@@ -12,7 +12,7 @@ const router = express.Router();
 // Create
 router.post("/", auth, multer, postCtrl.createPost);
 // Read (all)
-router.get("/", postCtrl.getAllPosts);
+router.get("/", auth, postCtrl.getAllPosts);
 // Read (User Post)
 router.get("/getUserPosts", auth, postCtrl.getUsersPosts);
 // Update

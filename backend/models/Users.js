@@ -1,5 +1,4 @@
 module.exports = (sequelize, DataTypes) => {
-
     const User = sequelize.define("users", {
         id: {
             type: DataTypes.INTEGER.UNSIGNED,
@@ -19,6 +18,11 @@ module.exports = (sequelize, DataTypes) => {
         password: {
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        admin: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            default: false,
         },
     });
 

@@ -6,18 +6,43 @@
     color: $color-3;
     border: 1px solid $color-2;
     object-fit: contain;
+
+    & .card-header {
+        display: flex;
+        justify-content: space-between;
+        height: 50px;
+    }
+
     & img {
         border-radius: 10px;
         object-fit: cover;
         width: 100%;
     }
+
     & p {
         padding: 15px 0px;
     }
+
     .update-post {
         textarea {
             border: 1px solid $color-2;
             width: 100%;
         }
+    }
+
+    & .button-container {
+        display: flex;
+        justify-content: space-around;
+        
+    }
+
+    & .icon-container {
+        background-color: white;
+        border: none;
+    }
+    
+    & img {
+        width: 100%;
+        cursor: pointer;
     }
 }

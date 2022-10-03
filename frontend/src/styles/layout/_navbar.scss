@@ -5,11 +5,14 @@ nav {
     align-items: center;
     background-color: $color-3;
     height: 100px;
-    
+
     .nav-container {
+        display: flex;
+        justify-content: space-between;
         height: 100%;
-        width: 200px;
+        width: 100%;
     }
+
     .logo {
         img {
             height: 100px;
@@ -18,5 +21,11 @@ nav {
             object-fit: fill;
             cursor: pointer;
         }
+    }
+
+    .logout-button {
+        background-color: $color-3;
+        padding-right: 40px;
+        cursor: pointer;
     }
 }

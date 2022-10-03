@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const userValidation = require("../validation/validation");
 
-const User = db.users
+const User = db.users;
 
 exports.signup = (req, res) => {
     bcrypt
@@ -12,7 +12,7 @@ exports.signup = (req, res) => {
             const { body } = req;
             const { error } = userValidation(body);
             if (error) return res.status(401).json(error.details[0].message);
-            User.create({ ...req.body, password: hash })
+            User.create({ ...req.body, password: hash, admin: false })
                 .then((result) => {
                     res.status(201).json(result);
                 })
@@ -55,7 +55,7 @@ exports.login = (req, res) => {
                                     { expiresIn: "24h" }
                                 ),
                             });
-                        } 
+                        }
                     })
                     // Si erreur d'exécution de la requête au serveur code 500.
                     .catch((error) => {
