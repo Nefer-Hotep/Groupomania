@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
 import UpdatePost from "./UpdatePost";
+import { useUser, useUpdateUser } from "../../context/UserContext";
+import LikeButton from "./LikeButton";
 
 const Card = ({ post, setPostUpdate }) => {
     const token = localStorage.getItem("groupomania.jwt.token");
     const [isUpdated, setIsUpdated] = useState(false);
     const [modifButton, setModifButton] = useState(false);
+
+    const userContext = useUser()
+    const toggleUser = useUpdateUser();
+
 
     axios({
         method: "get",
@@ -58,6 +64,8 @@ const Card = ({ post, setPostUpdate }) => {
                     setIsUpdated={setIsUpdated}
                 />
             )}
+            {console.log(userContext)}
+            <LikeButton />
         </li>
     );
 };

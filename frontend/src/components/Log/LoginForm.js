@@ -20,8 +20,6 @@ const LoginForm = () => {
             },
         })
             .then((res) => {
-                console.log(res);
-                console.log(res.data.token);
                 if (res.data.errors) {
                     emailError.innerHTML = res.data.errors.email;
                     passwordError.innerHTML = res.data.errors.password;

@@ -11,6 +11,7 @@ const router = express.Router();
 
 // Create
 router.post("/", auth, multer, postCtrl.createPost);
+router.post("/:id/like", auth, postCtrl.likePost);
 // Read (all)
 router.get("/", auth, postCtrl.getAllPosts);
 // Read (User Post)

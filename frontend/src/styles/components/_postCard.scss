@@ -33,16 +33,23 @@
     & .button-container {
         display: flex;
         justify-content: space-around;
-        
     }
 
     & .icon-container {
         background-color: white;
         border: none;
     }
-    
+
     & img {
         width: 100%;
         cursor: pointer;
+    }
+
+    .like-container {
+        display: flex;
+        align-items: center;
+        & img {
+            width: 35px;
+        }
     }
 }

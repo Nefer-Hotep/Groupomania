@@ -21,6 +21,7 @@ db.sequelize = sequelize;
 
 db.users = require("./Users")(sequelize, DataTypes);
 db.posts = require("./Posts")(sequelize, DataTypes);
+db.likes = require("./Likes")(sequelize, DataTypes);
 
 // Connection à MySql avec sequelize.
 db.sequelize
@@ -42,6 +43,18 @@ db.posts.belongsTo(db.users, {
     as: "users",
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
+});
+
+db.users.belongsToMany(db.posts, {
+    through: db.likes,
+    foreignKey: "userId",
+    as: "users",
+});
+
+db.posts.belongsToMany(db.users, {
+    through: db.likes,
+    foreignKey: "postId",
+    as: "posts",
 });
 
 module.exports = db;

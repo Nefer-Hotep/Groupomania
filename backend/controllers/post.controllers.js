@@ -4,6 +4,7 @@ const fs = require("fs");
 // Create main Model
 const User = db.users;
 const Post = db.posts;
+const Like = db.likes;
 
 exports.getAllPosts = async (req, res) => {
     await Post.findAll({
@@ -35,7 +36,6 @@ exports.createPost = async (req, res) => {
         message: req.body.message,
     });
     res.status(201).json({ message: "Post ajouté" });
-    console.log(post.dataValues);
 };
 
 exports.updatePost = async (req, res) => {
@@ -127,5 +127,27 @@ exports.getUsersPosts = async (req, res) => {
         res.status(200).send(data);
     } else {
         res.status(401).json({ message: "Vous n'avez pas les droits requis" });
+    }
+};
+
+exports.likePost = async (req, res) => {
+    try {
+        const userId = req.auth.userId;
+        const postId = req.params.id;
+        const user = await Like.findOne({
+            where: { userId: userId, postId: postId },
+        });
+        if (user) {
+            await Like.destroy(
+                { where: { userId: userId, postId: postId } },
+                { truncate: true, restartIdentity: true }
+            );
+            res.status(200).send({ message: "vou n'aimez plus ce post" });
+        } else {
+            await Like.create({ userId: userId, postId: postId });
+            res.status(201).json({ message: "vous aimez ce post" });
+        }
+    } catch (error) {
+        return res.status(500).send({ error: "Erreur serveur" });
     }
 };
