@@ -1,20 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useUser } from "../context/UserContext";
 import Logout from "./Log/Logout";
 
 const Navbar = () => {
+    const userId = useUser();
+    console.log(userId);
     return (
         <nav>
             <div className='nav-container'>
                 <div className='logo'>
-                    <Link to='/'>
-                        <img
-                            src='./img/icon-left-font-monochrome-white.svg'
-                            alt=''
-                        />
-                    </Link>
+                    <img
+                        src='./img/icon-left-font-monochrome-white.svg'
+                        alt='Logo de groupomania'
+                    />
                 </div>
-                <Logout />
+                {userId ? <Logout /> : null}
             </div>
         </nav>
     );

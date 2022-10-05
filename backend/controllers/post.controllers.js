@@ -15,7 +15,12 @@ exports.getAllPosts = async (req, res) => {
                 as: "users",
                 attributes: ["pseudo", "id"],
             },
-        ],
+            {
+                model: Like,
+                as: "likes",
+                attributes: ["userId"],
+            },
+        ], 
     })
         .then((post) => res.status(200).json(post))
         .catch((err) => res.status(500).json({ err }));
@@ -120,6 +125,11 @@ exports.getUsersPosts = async (req, res) => {
                 {
                     model: Post,
                     as: "posts",
+                },
+                {
+                    model: Like,
+                    as: "likes",
+                    attributes: ["postId", "userId"],
                 },
             ],
             where: { id: userId },

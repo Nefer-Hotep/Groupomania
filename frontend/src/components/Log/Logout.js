@@ -1,8 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import { useUpdateUser } from "../../context/UserContext";
 
 const Logout = () => {
+    const userLoged = useUpdateUser()
+
     const logout = () => {
+        userLoged()
         localStorage.removeItem("groupomania.jwt.token");
     };
 

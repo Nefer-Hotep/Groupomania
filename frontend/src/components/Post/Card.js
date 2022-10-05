@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import UpdatePost from "./UpdatePost";
-import { useUser, useUpdateUser } from "../../context/UserContext";
+import { useUpdateUser } from "../../context/UserContext";
 import LikeButton from "./LikeButton";
 
 const Card = ({ post, setPostUpdate }) => {
@@ -9,9 +9,8 @@ const Card = ({ post, setPostUpdate }) => {
     const [isUpdated, setIsUpdated] = useState(false);
     const [modifButton, setModifButton] = useState(false);
 
-    const userContext = useUser()
     const toggleUser = useUpdateUser();
-
+    console.log(post);
 
     axios({
         method: "get",
@@ -23,6 +22,7 @@ const Card = ({ post, setPostUpdate }) => {
         .then((res) => {
             if (res.data[0].id === post.userId || res.data[0].admin === true) {
                 setModifButton(true);
+                toggleUser(res.data[0]);
             } else {
                 console.log("Modification non autorisé !");
             }
@@ -64,8 +64,7 @@ const Card = ({ post, setPostUpdate }) => {
                     setIsUpdated={setIsUpdated}
                 />
             )}
-            {console.log(userContext)}
-            <LikeButton />
+            <LikeButton post={post} />
         </li>
     );
 };
