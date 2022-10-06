@@ -4,7 +4,7 @@ import Logout from "./Log/Logout";
 
 const Navbar = () => {
     const userId = useUser();
-    console.log(userId);
+    
     return (
         <nav>
             <div className='nav-container'>

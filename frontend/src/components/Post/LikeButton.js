@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useUser } from "../../context/UserContext";
 
-const LikeButton = ({ post }) => {
+const LikeButton = ({ post, setPostUpdate }) => {
     const token = localStorage.getItem("groupomania.jwt.token");
-    const [liked, setLiked] = useState();
+    const [liked, setLiked] = useState(false);
 
-    const userId = useUser();
+    const uId = useUser();
+    const postId = post.id;
 
     const like = () => {
-        const postId = post.id;
         axios({
             method: "post",
             url: `${process.env.REACT_APP_API_URL}api/post/${postId}/like`,
@@ -18,17 +18,18 @@ const LikeButton = ({ post }) => {
             },
         })
             .then((res) => {
-                console.log(res.data);
-                console.log(userId);
-                console.log(post);
+                setPostUpdate(res.data);
             })
             .catch((err) => console.log(err));
     };
 
     useEffect(() => {
-        if (post.likes.includes(userId)) setLiked(true);
+        if (post.likes.find(obj => {
+            return obj.userId === uId;
+          })) setLiked(true);
+          
         else setLiked(false);
-    }, [liked]);
+    }, [uId, post, liked]);
 
     return (
         <>

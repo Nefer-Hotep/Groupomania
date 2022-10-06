@@ -10,7 +10,6 @@ const Card = ({ post, setPostUpdate }) => {
     const [modifButton, setModifButton] = useState(false);
 
     const toggleUser = useUpdateUser();
-    console.log(post);
 
     axios({
         method: "get",
@@ -22,7 +21,7 @@ const Card = ({ post, setPostUpdate }) => {
         .then((res) => {
             if (res.data[0].id === post.userId || res.data[0].admin === true) {
                 setModifButton(true);
-                toggleUser(res.data[0]);
+                toggleUser(res.data[0].id);
             } else {
                 console.log("Modification non autorisé !");
             }
@@ -64,7 +63,7 @@ const Card = ({ post, setPostUpdate }) => {
                     setIsUpdated={setIsUpdated}
                 />
             )}
-            <LikeButton post={post} />
+            <LikeButton post={post} setPostUpdate={setPostUpdate}/>
         </li>
     );
 };

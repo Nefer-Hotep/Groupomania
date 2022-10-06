@@ -129,7 +129,7 @@ exports.getUsersPosts = async (req, res) => {
                 {
                     model: Like,
                     as: "likes",
-                    attributes: ["postId", "userId"],
+                    attributes: ["postId"],
                 },
             ],
             where: { id: userId },
