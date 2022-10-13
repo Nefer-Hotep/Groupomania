@@ -1,6 +1,6 @@
 nav {
     width: 100%;
-    padding-left: 40px;
+    padding-left: 35px;
     display: flex;
     align-items: center;
     background-color: $color-3;
@@ -19,13 +19,12 @@ nav {
             width: 200px;
             position: absolute;
             object-fit: fill;
-            cursor: pointer;
         }
     }
 
     .logout-button {
         background-color: $color-3;
-        padding-right: 40px;
+        padding-right: 35px;
         cursor: pointer;
     }
 }

@@ -50,14 +50,23 @@ const CreatePost = ({ setCreatePost }) => {
                     onChange={(e) => setMessage(e.target.value)}
                     value={message}
                 />
-                <input
-                    type='file'
-                    id='file-upload'
-                    name='image'
-                    accept='.jpg, .jpeg, .png'
-                    onChange={(e) => handlePicture(e)}
-                />
-                <input type='submit' value='Envoyer' className='send' />
+                <div className='submit-container'>
+                    <button className='picture-icon'>
+                        <input
+                            type='file'
+                            id='file-upload'
+                            name='image'
+                            accept='.jpg, .jpeg, .png'
+                            onChange={(e) => handlePicture(e)}
+                        />
+                        <img
+                            src='./img/icons/picture.svg'
+                            alt="ajout d'un fichier"
+                        />
+                    </button>
+
+                    <input type='submit' value='Envoyer' className='send' />
+                </div>
             </form>
         </div>
     );

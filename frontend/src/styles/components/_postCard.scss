@@ -7,6 +7,10 @@
     border: 1px solid $color-2;
     object-fit: contain;
 
+    @media (max-width: 768px) {
+        border-radius: 0px;    
+    }
+
     & .card-header {
         display: flex;
         justify-content: space-between;
@@ -30,19 +34,24 @@
         }
     }
 
-    & .button-container {
+    & .icon-container {
         display: flex;
         justify-content: space-around;
-    }
-
-    & .icon-container {
         background-color: white;
         border: none;
+        & img {
+            width: 100%;
+            cursor: pointer;
+        }
     }
 
-    & img {
-        width: 100%;
-        cursor: pointer;
+    & .button-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .picture-icon{
+        background-color: #fff;
     }
 
     .like-container {
@@ -51,6 +60,7 @@
         align-items: center;
         height: 40px;
         & img {
+            cursor: pointer;
             width: 35px;
         }
     }

@@ -5,8 +5,6 @@
     .connection-form {
         @include shadow;
         z-index: 1;
-        height: 100%;
-        min-width: 490px;
         margin: 35px auto 0;
         padding: 30px 0;
         user-select: none;
@@ -21,6 +19,13 @@
             grid-template-columns: 30% 70%;
             margin: 10px auto 0;
             padding: 20px;
+
+            @media (max-width: 628px) {
+                grid-template-columns: 1fr;
+                #sign-up-form {
+                    margin-top: 20px;
+                }
+            }
         }
 
         .active-btn {

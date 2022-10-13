@@ -9,17 +9,29 @@
     border-radius: 10px;
     color: $color-3;
     background-color: $color-2;
+
     & h1 {
         font-size: large;
     }
+
     & #message {
         height: auto;
-        margin-top: 10px;
         width: 100%;
     }
+
     & img {
         border-radius: 10px;
         margin: 10px 0px;
         width: 100%;
+    }
+
+    & .submit-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    @media (max-width: 768px) {
+        border-radius: 0px;
     }
 }

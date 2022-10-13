@@ -57,10 +57,11 @@ exports.updatePost = async (req, res) => {
             if (post.image) {
                 // Récupère le nom de fichier des images.
                 const filename = post.image.split("images")[1];
+
                 fs.unlink(`images/${filename}`, (err) => {
                     if (err) console.log(err);
                     else {
-                        console.log(`Deleted file: images/${filename}`);
+                        console.log(`Fichier supprimé: images/${filename}`);
                     }
                 });
             }
@@ -91,6 +92,7 @@ exports.deletePost = async (req, res) => {
     if (userId === post.userId || checkAdmin.admin === true) {
         if (post.image) {
             const filename = post.image.split("images")[1];
+            
             fs.unlink(`images/${filename}`, () => {
                 Post.destroy({ where: { id: id } })
                     .then(() => {
@@ -152,10 +154,10 @@ exports.likePost = async (req, res) => {
                 { where: { userId: userId, postId: postId } },
                 { truncate: true, restartIdentity: true }
             );
-            res.status(200).send({ message: "vou n'aimez plus ce post" });
+            res.status(200).send({ message: "Vous n'aimez plus ce post" });
         } else {
             await Like.create({ userId: userId, postId: postId });
-            res.status(201).json({ message: "vous aimez ce post" });
+            res.status(201).json({ message: "Vous aimez ce post" });
         }
     } catch (error) {
         return res.status(500).send({ error: "Erreur serveur" });

@@ -50,19 +50,28 @@ const UpdatePost = ({ post, setPostUpdate, setIsUpdated }) => {
                     defaultValue={post.message}
                     onChange={(e) => setTextUpdate(e.target.value)}
                 />
-                <input
-                    type='file'
-                    id='file-upload'
-                    name='image'
-                    accept='.jpg, .jpeg, .png'
-                    onChange={(e) => handlePicture(e)}
-                />
                 <div className='button-container'>
                     <button className='btn' onClick={updateItem}>
-                        Valider modification
+                        Valider
                     </button>
                     <button className='btn' onClick={cancelUpdate}>
-                        Annuler modification
+                        Annuler
+                    </button>
+                </div>
+                <div className='icon-container'>
+                    <button className='picture-icon'>
+                        <input
+                            type='file'
+                            id='file-upload'
+                            name='image'
+                            accept='.jpg, .jpeg, .png'
+                            onChange={(e) => handlePicture(e)}
+                        />
+                        <img
+                            for='file'
+                            src='./img/icons/picture.svg'
+                            alt="ajout d'un fichier"
+                        />
                     </button>
                     <DeleteCard post={post} setPostUpdate={setPostUpdate} />
                 </div>

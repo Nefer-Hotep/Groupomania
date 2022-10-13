@@ -1,74 +1,76 @@
-J'ai init le frontend avec "npx create-react-app ." dans la console.
-J'ai init le backend avec "npm init" dans la console.
-J'ai installé les dépendances "npm i mysql express".
-J'ai installé le package "npm i nodemon".
-
 ## Introduction :
 
+Bienvenue sur mon dépôt Groupomania !
 
- Bienvenue sur mon dépôt Groupomania !
- 
- Le projet Groupomania a été réalisé dans le cadre de la formation OpenClassRoom "parcours développeur web".
- 
- Pour ce septième et dernier projet du parcours, nous avions à réaliser un réseau social interne pour les employés de la société Groupomania (côté server et côté client).
- 
- Vous trouverez la mission du projet dans ce document pdf :
- https://course.oc-static.com/projects/DWJ_FR_P7/DW+P7+28-09-2022+Sce%CC%81nario.pdf
- 
- Quant au cahier des charge, vous le trouverez dans cet autre pdf :
- https://course.oc-static.com/projects/DWJ_FR_P7/Cahier+des+charges+Groupomania.pdf
- 
- 
- ## Technologies utilisées :
- NodeJs, React, Express, Mysql, Sequelize, Sass.
- 
- 
- ## Dépendences installées :
- ### Backend :
- Bcrypt, dotenv, express, jsonwebtoken, multer, joi, nodemon, mysql2, sequelize.
- ### Frontend :
- Axios, dotenv, react, react-dom, react-router-dom, react-scripts, web-vitals, sass.
- 
- 
- ## Installation :
- Clonez le projet puis ouvrez un premier terminal pour le **backend** :
- >cd backend
- 
- Dans le repertoire backend, entrez la ligne : 
- >npm install
- 
- pour installer toutes les dépendences du back,
- puis 
- >npm start
- 
- pour executer le serveur (qui sera sur le port 4200)
+Le projet Groupomania a été réalisé dans le cadre de la formation OpenClassRoom "parcours développeur web".
 
-*Gardez ce terminal ouvert.*
+Pour ce septième et dernier projet du parcours, nous avions à réaliser un réseau social interne pour les employés de la société Groupomania (côté server et côté client).
 
- 
- A présent ourez un second terminal pour le **frontend** :
- Dans le repertoire frontend, entrez la ligne : 
- >cd frontend
- 
- pour vous placer dans le repertoire du frontend, puis
- >npm install
- 
- pour installer toutes les dépendences du front,
- et enfin
-  >npm start
+Vous trouverez la mission du projet dans ce document pdf :
+https://course.oc-static.com/projects/DWJ_FR_P7/DW+P7+28-09-2022+Sce%CC%81nario.pdf
 
- pour executer l'application (qui sera sur le port 3000)
- 
- *Gardez ce terminal ouvert.*
- 
- Les modèles de mes deux fichiers .env sont disponibles dans le répertoire /frontend et dans /backend/config, il vous faudra y entrer votre propre clé token et vos identifiants Mysql pour le .env du back et y faire correspondre l'url dans le .env du front (et renommer ces deux fichiers .env.example par .env).
+Quant au cahier des charge, vous le trouverez dans cet autre pdf :
+https://course.oc-static.com/projects/DWJ_FR_P7/Cahier+des+charges+Groupomania.pdf
+
+## Technologies utilisées :
+
+NodeJs, React, Express, Mysql, Sequelize, Sass.
+
+## Dépendences installées :
+
+### Backend :
+
+Bcrypt, dotenv, express, jsonwebtoken, multer, joi, nodemon, mysql2, sequelize.
+
+### Frontend :
+
+Axios, dotenv, react, react-dom, react-router-dom, react-scripts, web-vitals, sass.
+
+## Installation :
+
+Clonez le projet puis ouvrez un premier terminal pour le **backend** :
+
+> cd backend
+
+Dans le repertoire backend, entrez la ligne :
+
+> npm install
+
+pour installer toutes les dépendences du back,
+puis :
+
+> npm start
+
+pour executer le serveur (qui sera sur le port choisi dans le .env (voir plus bas))
+
+_Gardez ce terminal ouvert._
+
+A présent ourez un second terminal pour le **frontend** :
+Dans le repertoire frontend, entrez la ligne :
+
+> cd frontend
+
+pour vous placer dans le repertoire du frontend, puis :
+
+> npm install
+
+pour installer toutes les dépendences du front, et enfin :
+
+> npm start
+
+pour executer l'application (qui sera sur le port 3000)
+
+_Gardez ce terminal ouvert._
+
+Les modèles de mes deux fichiers .env sont disponibles dans le répertoire /frontend et dans /backend/config, il vous faudra y entrer votre propre clé token et vos identifiants Mysql pour le .env du back et y faire correspondre l'url dans le .env du front (et renommer ces deux fichiers .env.example par .env).
 
 ## Admin
- Pour le rôle d'admin. Dans la table users ajouté a l'utilisateur de votre choix un 1 dans la colonne admin.
- 
- 
- ## Tout est bon ! 
- Vous pouvez dès à présent vous rendre à l'adresse "http://localhost:3000" 
- pour vous créer un compte Groupomania, créer des posts et les modifier !
- 
- Amusez-vous bien !
+
+Pour le rôle d'admin. Dans la table users ajouté a l'utilisateur de votre choix un 1 dans la colonne admin.
+
+## Tout est bon !
+
+Vous pouvez dès à présent vous rendre à l'adresse "http://localhost:3000"
+pour vous créer un compte Groupomania, créer des posts et les modifier !
+
+Amusez-vous bien !
