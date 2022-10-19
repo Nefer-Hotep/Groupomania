@@ -1,0 +1,13 @@
+
+// 
+//  DISPLAY
+// 
+@mixin center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin shadow {
+    box-shadow: 9px 8px 20px 0px $shadow-color;
+}

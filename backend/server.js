@@ -1,7 +1,10 @@
 const express = require("express");
 require("dotenv").config({ path: "./config/.env" });
-const db = require("./config/db");
+const userRoutes = require("./routes/user.routes");
+const postRoutes = require("./routes/post.routes");
 const app = express();
+
+
 
 // Définie les headers (en-têtes) pour les autorisations CORS.
 app.use((req, res, next) => {
@@ -23,23 +26,12 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-app.post("/signup", (req, res) => {
-    const name = req.body.name;
-    const email = req.body.email;
-    const password = req.body.password;
+// routers
+app.use("/api/user", userRoutes);
+app.use('/api/post', postRoutes)
 
-    db.query(
-        "INSERT INTO users (name, email, password) VALUES (?,?,?)",
-        [name, email, password],
-        (err, result) => {
-            if (err) {
-                console.log(err);
-            } else {
-                res.send("Values Inserted");
-            }
-        }
-    );
-});
+// static Images Folder
+app.use('/Images', express.static('./Images'))
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`);

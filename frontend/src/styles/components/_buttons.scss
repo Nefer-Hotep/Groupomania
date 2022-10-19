@@ -1,0 +1,66 @@
+.btn,
+input[type="submit"] {
+    cursor: pointer;
+    transition: 0.2s;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    border: solid 1px $color-3;
+    border-radius: 20px;
+    color: $color-3;
+    background-color: $white;
+    height: 50px;
+    font-weight: bold;
+    &:hover {
+        background-color: $color-3;
+        color: $white;
+    }
+}
+
+input,
+textarea {
+    resize: none;
+    border-radius: 10px;
+    background: $white;
+    padding: 14px 20px;
+    margin: 0;
+    font-size: 1rem;
+}
+
+#login,
+#register {
+    min-width: 130px;
+    height: 40px;
+    color: $color-3;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    // position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 20px;
+    border: 2px solid $color-2;
+}
+
+input[type="file"] {
+    cursor: pointer;
+    position: absolute;
+    border-radius: 0;
+    padding-left: 50px;
+    background-color: $color-3;
+    opacity: 0;
+    transform: scale(2);
+}
+
+#file-upload {
+    width: 100%;
+}
+
+.picture-icon {
+    position: relative;
+    overflow: hidden;
+    background-color: $color-2;
+    // & img {
+    //     width: 50px;
+    //     height: 55px;
+    // }
+}

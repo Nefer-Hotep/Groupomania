@@ -1,15 +1,14 @@
-const mysql = require("mysql");
+module.exports = {
+    HOST: "localhost",
+    DB: "groupomania",
+    USER: `${process.env.DB_USER}`,
+    PASSWORD: `${process.env.DB_PASS}`,
+    dialect: "mysql",
 
-const db = mysql.createConnection({
-    user: `${process.env.DB_USER}`,
-    host: "localhost",
-    password: `${process.env.DB_PASS}`,
-    database: "groupomania",
-});
-
-db.connect((err) => {
-    if (err) throw err;
-    console.log("MySql connected !");
-});
-
-module.exports = db;
+    pool: {
+        max: 5,
+        min: 0,
+        acquire: 30000,
+        idle: 10000
+    }
+};

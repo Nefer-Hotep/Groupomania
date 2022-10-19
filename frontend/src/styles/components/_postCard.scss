@@ -1,0 +1,67 @@
+.card-container {
+    @include shadow;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    color: $color-3;
+    border: 1px solid $color-2;
+    object-fit: contain;
+
+    @media (max-width: 768px) {
+        border-radius: 0px;    
+    }
+
+    & .card-header {
+        display: flex;
+        justify-content: space-between;
+        height: 50px;
+    }
+
+    & img {
+        border-radius: 10px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    & p {
+        padding: 15px 0px;
+    }
+
+    .update-post {
+        textarea {
+            border: 1px solid $color-2;
+            width: 100%;
+        }
+    }
+
+    & .icon-container {
+        display: flex;
+        justify-content: space-around;
+        background-color: white;
+        border: none;
+        & img {
+            width: 100%;
+            cursor: pointer;
+        }
+    }
+
+    & .button-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .picture-icon{
+        background-color: #fff;
+    }
+
+    .like-container {
+        @include center;
+        display: flex;
+        align-items: center;
+        height: 40px;
+        & img {
+            cursor: pointer;
+            width: 35px;
+        }
+    }
+}
