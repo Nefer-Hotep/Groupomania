@@ -49,6 +49,7 @@ const CreatePost = ({ setCreatePost }) => {
                     placeholder='Quoi de neuf ?'
                     onChange={(e) => setMessage(e.target.value)}
                     value={message}
+                    aria-label='Insérer votre text'
                 />
                 <div className='submit-container'>
                     <button className='picture-icon'>
@@ -58,6 +59,7 @@ const CreatePost = ({ setCreatePost }) => {
                             name='image'
                             accept='.jpg, .jpeg, .png'
                             onChange={(e) => handlePicture(e)}
+                            aria-label="Ajout d'une image"
                         />
                         <img
                             src='./img/icons/picture.svg'
