@@ -66,6 +66,7 @@ const UpdatePost = ({ post, setPostUpdate, setIsUpdated }) => {
                             name='image'
                             accept='.jpg, .jpeg, .png'
                             onChange={(e) => handlePicture(e)}
+                            aria-label="Modification d'une image"
                         />
                         <img
                             src='./img/icons/picture.svg'
