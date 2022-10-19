@@ -43,6 +43,8 @@ puis :
 
 pour executer le serveur (qui sera sur le port choisi dans le .env (voir plus bas))
 
+puis crée un dossier images pour leurs stokage.
+
 _Gardez ce terminal ouvert._
 
 A présent ourez un second terminal pour le **frontend** :
@@ -67,6 +69,11 @@ Les modèles de mes deux fichiers .env sont disponibles dans le répertoire /fro
 ## Admin
 
 Pour le rôle d'admin. Dans la table users ajouté a l'utilisateur de votre choix un 1 dans la colonne admin.
+
+Dans le cas ou vous avez récupéré la database fourni les identifiants administrateur sont :
+
+email : admin@gmail.com
+mdp: admin
 
 ## Tout est bon !
 

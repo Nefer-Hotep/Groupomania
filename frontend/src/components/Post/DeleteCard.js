@@ -3,7 +3,6 @@ import React from "react";
 
 const DeleteCard = ({ post, setPostUpdate }) => {
     const token = localStorage.getItem("groupomania.jwt.token");
-    console.log(post.id);
 
     const deletePost = () => {
         axios({

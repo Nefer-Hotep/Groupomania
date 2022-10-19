@@ -68,7 +68,6 @@ const UpdatePost = ({ post, setPostUpdate, setIsUpdated }) => {
                             onChange={(e) => handlePicture(e)}
                         />
                         <img
-                            for='file'
                             src='./img/icons/picture.svg'
                             alt="ajout d'un fichier"
                         />
